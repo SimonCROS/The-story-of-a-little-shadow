@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   k_AssetVersion: 3
   m_RenderingLayerNames:
-  - Light Layer default
+  - Default
   - Character
-  - Wall
+  - Character Shadow
   - Ground
   - Light Layer 4
   - Light Layer 5
