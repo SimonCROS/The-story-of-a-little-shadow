@@ -1,18 +1,17 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 
-public class PlayerController : MonoBehaviour, DefaultPlayerControls.IPlayerActions
+public class PlayerController : MonoBehaviour
 {
     Rigidbody m_Rigidbody;
+    private bool m_Grounded;
+    public Rigidbody m_CharacterRigidbody;
     public float m_Speed = 6f;
+    public float m_JumpAmount = 10f;
 
     // MyPlayerControls is the C# class that Unity generated.
     // It encapsulates the data from the .inputactions asset we created
     // and automatically looks up all the maps and actions for us.
     private DefaultPlayerControls controls;
-
-    private Vector2 m_Input;
 
     private void Awake()
     {
@@ -24,9 +23,6 @@ public class PlayerController : MonoBehaviour, DefaultPlayerControls.IPlayerActi
         if (controls == null)
         {
             controls = new DefaultPlayerControls();
-            // Tell the "gameplay" action map that we want to get told about
-            // when actions get triggered.
-            controls.Player.SetCallbacks(this);
         }
 
         controls.Player.Enable();
@@ -39,43 +35,41 @@ public class PlayerController : MonoBehaviour, DefaultPlayerControls.IPlayerActi
 
     private void FixedUpdate()
     {
-        m_Rigidbody.MovePosition(transform.position + m_Speed * Time.deltaTime * (Vector3)m_Input);
+        var input = controls.Player.Move.ReadValue<Vector2>();
+        m_Rigidbody.MovePosition(transform.position + m_Speed * Time.deltaTime * (Vector3)input);
+
+        if (controls.Player.Jump.IsPressed())
+        {
+            if (m_Grounded)
+            {
+                m_CharacterRigidbody.AddForce(Vector3.up * m_JumpAmount, ForceMode.Impulse);
+            }
+        }
     }
 
-    void DefaultPlayerControls.IPlayerActions.OnMove(InputAction.CallbackContext context)
+    private void OnCollisionEnter(Collision other)
     {
-        m_Input = controls.Player.Move.ReadValue<Vector2>();
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            m_Grounded = true;
+        }
     }
 
-    void DefaultPlayerControls.IPlayerActions.OnLook(InputAction.CallbackContext context)
+    private void OnCollisionExit(Collision other)
     {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            m_Grounded = false;
+        }
     }
 
-    void DefaultPlayerControls.IPlayerActions.OnAttack(InputAction.CallbackContext context)
+    private void CharacterGroundEnter()
     {
+        m_Grounded = true;
     }
 
-    void DefaultPlayerControls.IPlayerActions.OnInteract(InputAction.CallbackContext context)
+    private void CharacterGroundExit()
     {
-    }
-
-    void DefaultPlayerControls.IPlayerActions.OnCrouch(InputAction.CallbackContext context)
-    {
-    }
-
-    void DefaultPlayerControls.IPlayerActions.OnJump(InputAction.CallbackContext context)
-    {
-    }
-
-    void DefaultPlayerControls.IPlayerActions.OnPrevious(InputAction.CallbackContext context)
-    {
-    }
-
-    void DefaultPlayerControls.IPlayerActions.OnNext(InputAction.CallbackContext context)
-    {
-    }
-
-    void DefaultPlayerControls.IPlayerActions.OnSprint(InputAction.CallbackContext context)
-    {
+        m_Grounded = false;
     }
 }
