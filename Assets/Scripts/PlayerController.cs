@@ -4,9 +4,12 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody m_Rigidbody;
     private bool m_Grounded;
-    public Rigidbody m_CharacterRigidbody;
-    public float m_Speed = 6f;
-    public float m_JumpAmount = 10f;
+    public float m_Speed = 4f;
+    public float m_JumpAmount = 1.5f;
+    public float m_ScaleSpeed = 6f;
+    public float m_MinScale = 1f;
+    public float m_MaxScale = 4.2f;
+    public Transform m_Scaler;
 
     // MyPlayerControls is the C# class that Unity generated.
     // It encapsulates the data from the .inputactions asset we created
@@ -35,14 +38,19 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var input = controls.Player.Move.ReadValue<Vector2>();
-        m_Rigidbody.MovePosition(transform.position + m_Speed * Time.deltaTime * (Vector3)input);
+        var move = controls.Player.Move.ReadValue<float>();
+        m_Rigidbody.MovePosition(transform.position + m_Speed * Time.deltaTime * new Vector3(move, 0f, 0f));
+        
+        var scale = controls.Player.Scale.ReadValue<float>();
+        var newScale = m_Scaler.localScale.x + scale * m_ScaleSpeed * Time.deltaTime;
+        m_Scaler.localScale = Mathf.Clamp(newScale, m_MinScale, m_MaxScale) * Vector3.one;
 
         if (controls.Player.Jump.IsPressed())
         {
             if (m_Grounded)
             {
-                m_CharacterRigidbody.AddForce(Vector3.up * m_JumpAmount, ForceMode.Impulse);
+                var jumpCoeff = Mathf.Sqrt(newScale);
+                m_Rigidbody.AddForce(Vector3.up * (m_JumpAmount * jumpCoeff), ForceMode.Impulse);
             }
         }
     }
@@ -61,15 +69,5 @@ public class PlayerController : MonoBehaviour
         {
             m_Grounded = false;
         }
-    }
-
-    private void CharacterGroundEnter()
-    {
-        m_Grounded = true;
-    }
-
-    private void CharacterGroundExit()
-    {
-        m_Grounded = false;
     }
 }
