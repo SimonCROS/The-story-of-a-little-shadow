@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TriggerBox : MonoBehaviour
@@ -18,6 +19,9 @@ public class TriggerBox : MonoBehaviour
 
 	[SerializeField]
     AudioClip Clip = null;
+
+    [SerializeField]
+    TextFade Text = null;
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -40,9 +44,15 @@ public class TriggerBox : MonoBehaviour
                         Source.Play();
                     }
                 }
+
+				if (Text != null)
+                {
+                    Text.FadeIn();
+                }
                 if (TriggerOnce)
                     Destroy(this);
             }
 		}
 	}
 }
+
