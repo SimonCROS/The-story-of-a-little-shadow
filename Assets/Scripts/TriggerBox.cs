@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TriggerBox : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class TriggerBox : MonoBehaviour
     [SerializeField]
     TextFade Text = null;
 
+    [SerializeField]
+    string nextScene = null;
+
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other != null)
@@ -30,6 +34,12 @@ public class TriggerBox : MonoBehaviour
             Debug.Log("Collided with " + other.gameObject.name);
             if (other.gameObject.name == TriggerObject)
             {
+                if (!string.IsNullOrEmpty(nextScene))
+                {
+                    SceneManager.LoadScene(nextScene);
+                    return;
+                }
+
                 if (Clip != null)
                 {
                     if (Source == null)
