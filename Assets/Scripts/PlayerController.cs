@@ -58,11 +58,22 @@ public class PlayerController : MonoBehaviour
             shadowCaster.flipX = false;
         controller.Move(move * (Time.deltaTime * playerSpeed));
 
-        // Visual scale
-        var scale = controls.Player.Scale.ReadValue<float>();
-        playerScale += scale * scaleSpeed * Time.deltaTime;
-        playerScale = Mathf.Clamp(playerScale, minScale, maxScale);
-        scaler.localScale = new Vector3(playerScale, playerScale, 1f);
+        if (groundedPlayer)
+        {
+            // Check if something above
+            var securityMargin = 0.01f;
+            var top = controller.transform.position + controller.center + new Vector3(0, (controller.height / 2) + securityMargin, 0);
+            bool touchingCeiling = Physics.Raycast(top, Vector3.up, out RaycastHit hit, 0.1f + Mathf.Max(playerVelocity.y, 0));
+        
+            // Visual scale
+            var scale = controls.Player.Scale.ReadValue<float>();
+            if (scale < 0 || !touchingCeiling)
+            {
+                playerScale += scale * scaleSpeed * Time.deltaTime;
+                playerScale = Mathf.Clamp(playerScale, minScale, maxScale);
+                scaler.localScale = new Vector3(playerScale, playerScale, 1f);
+            }
+        }
 
         // Collider scale
         float center = 0.58f * playerScale;
