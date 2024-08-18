@@ -96,7 +96,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: d88446bef9005b94983ac165667edc95,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -199,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 172241515}
   serializedVersion: 2
   m_LocalRotation: {x: 0.01745245, y: 0, z: 0, w: 0.99984777}
-  m_LocalPosition: {x: 46.49, y: 3.38, z: -5.84}
+  m_LocalPosition: {x: 43.75, y: 3.38, z: -5.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -628,7 +629,7 @@ Transform:
   m_GameObject: {fileID: 1811044895}
   serializedVersion: 2
   m_LocalRotation: {x: 0.01745245, y: 0, z: 0, w: 0.99984777}
-  m_LocalPosition: {x: 46.49, y: 4.5, z: -5.84}
+  m_LocalPosition: {x: 43.75, y: 4.5, z: -5.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -728,7 +729,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5896512439858306503}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1804484629702805996
 --- !u!1 &2128802852
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,6 +977,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level1
       objectReference: {fileID: 0}
+    - target: {fileID: 8155990670250160168, guid: 3789fb818e19aa74481f35604769ff70,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: 3a16a056858d8c84e9aed2fb9d56276c,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -995,15 +1001,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Container
       objectReference: {fileID: 0}
-    - target: {fileID: 8310843022271796629, guid: 61662679dad16834ca643c164a3940ec,
-        type: 3}
-      propertyPath: m_CastShadows
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8539117542663627291, guid: 61662679dad16834ca643c164a3940ec,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 41.49
+      value: 38.75
       objectReference: {fileID: 0}
     - target: {fileID: 8539117542663627291, guid: 61662679dad16834ca643c164a3940ec,
         type: 3}
@@ -1155,10 +1156,10 @@ SceneRoots:
   - {fileID: 684714409}
   - {fileID: 832575519}
   - {fileID: 5896512439858306503}
-  - {fileID: 1804484629702805996}
   - {fileID: 172241517}
   - {fileID: 1811044900}
   - {fileID: 462302098}
   - {fileID: 5899159948105945946}
   - {fileID: 1813026130}
   - {fileID: 2128802855}
+  - {fileID: 1473467381757152376}

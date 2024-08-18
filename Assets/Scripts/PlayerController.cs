@@ -1,15 +1,19 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody rb;
-    private bool grounded;
-    public float speed = 4f;
-    public float jumpAmount = 1.5f;
+    private CharacterController controller;
+    private bool groundedPlayer;
+    private Vector3 playerVelocity;
+    public float playerSpeed = 4f;
+    public float jumpHeight = 0.6f;
+    public float playerScale = 1f;
     public float scaleSpeed = 6f;
     public float minScale = 1f;
     public float maxScale = 4.2f;
+    public float gravityValue = -9.81f;
     public Transform scaler;
     public SpriteRenderer shadowCaster;
 
@@ -20,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
     }
 
     public void OnEnable()
@@ -40,41 +44,40 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var move = controls.Player.Move.ReadValue<float>();
-        if (move < 0)
+        groundedPlayer = controller.isGrounded;
+        if (groundedPlayer && playerVelocity.y < 0)
+        {
+            playerVelocity.y = 0f;
+        }
+
+        // Move left right
+        var move = new Vector3(controls.Player.Move.ReadValue<float>(), 0, 0);
+        if (move.x < 0)
             shadowCaster.flipX = true;
-        else if (move > 0)
+        else if (move.x > 0)
             shadowCaster.flipX = false;
+        controller.Move(move * (Time.deltaTime * playerSpeed));
 
-        rb.MovePosition(transform.position + speed * Time.deltaTime * new Vector3(move, 0f, 0f));
-        
+        // Visual scale
         var scale = controls.Player.Scale.ReadValue<float>();
-        var newScale = scaler.localScale.x + scale * scaleSpeed * Time.deltaTime;
-        scaler.localScale = Mathf.Clamp(newScale, minScale, maxScale) * Vector3.one;
+        playerScale += scale * scaleSpeed * Time.deltaTime;
+        playerScale = Mathf.Clamp(playerScale, minScale, maxScale);
+        scaler.localScale = new Vector3(playerScale, playerScale, 1f);
 
-        if (controls.Player.Jump.IsPressed())
+        // Collider scale
+        float center = 0.58f * playerScale;
+        controller.center = new Vector3(controller.center.x, center, controller.center.z);
+        controller.height = center * 2f - 0.16f;
+        controller.radius = playerScale * 0.16f;
+        
+        // Jump
+        if (controls.Player.Jump.IsPressed() && groundedPlayer)
         {
-            if (grounded)
-            {
-                var jumpCoeff = Mathf.Sqrt(newScale);
-                rb.AddForce(Vector3.up * (jumpAmount * jumpCoeff), ForceMode.Impulse);
-            }
+            float jumpVariation = Mathf.Sqrt(playerScale);
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * jumpVariation * gravityValue);
         }
-    }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            grounded = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            grounded = false;
-        }
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
     }
 }

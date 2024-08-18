@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8539117542663627291}
   - component: {fileID: 1410421847727729937}
-  - component: {fileID: 6912017529173303246}
-  m_Layer: 0
+  - component: {fileID: 4630105022344283626}
+  m_Layer: 6
   m_Name: Player Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,40 +49,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be3d4e7bd01a69746abeda6ab2a0456e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  jumpAmount: 1.5
+  playerSpeed: 4
+  jumpHeight: 0.6
   scaleSpeed: 6
   minScale: 1
   maxScale: 4.2
+  gravityValue: -9.81
   scaler: {fileID: 4564080080693781879}
   shadowCaster: {fileID: 8310843022271796629}
---- !u!54 &6912017529173303246
-Rigidbody:
+--- !u!143 &4630105022344283626
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731001524722218655}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 120
-  m_CollisionDetection: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 0.85
+  m_Radius: 0.16
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1976987540832121436
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2029636184804255476}
   - component: {fileID: 3196850086593904882}
   - component: {fileID: 1892274582912356047}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4329380216259709384}
   - component: {fileID: 5220008007882976606}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Music Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5250806281556283149}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spot Light Rack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,8 +371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8497864087124226634}
   - component: {fileID: 8310843022271796629}
-  - component: {fileID: 7732523486828961839}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shadow Caster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -446,27 +445,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &7732523486828961839
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4635539049103505565}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.26, y: 0.95, z: 0.2}
-  m_Center: {x: 0, y: -0.23, z: 0}
 --- !u!1 &8492297712383343249
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,7 +454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4564080080693781879}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Scaler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +487,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1965158303138213600}
   - component: {fileID: 605335663285882517}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Voice Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
