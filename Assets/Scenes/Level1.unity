@@ -347,6 +347,11 @@ PrefabInstance:
       propertyPath: TriggerOnce
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
+        type: 3}
+      propertyPath: TriggerObject
+      value: Player Container
+      objectReference: {fileID: 0}
     - target: {fileID: 5147536690289369468, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
       propertyPath: m_Name
@@ -478,7 +483,7 @@ Transform:
   m_GameObject: {fileID: 172241515}
   serializedVersion: 2
   m_LocalRotation: {x: 0.01745245, y: 0, z: 0, w: 0.99984777}
-  m_LocalPosition: {x: 1.128, y: 3.38, z: -5.84}
+  m_LocalPosition: {x: 0.7399998, y: 3.38, z: -5.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -654,6 +659,11 @@ PrefabInstance:
         type: 3}
       propertyPath: TriggerOnce
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
+        type: 3}
+      propertyPath: TriggerObject
+      value: Player Container
       objectReference: {fileID: 0}
     - target: {fileID: 5147536690289369468, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
@@ -932,6 +942,11 @@ PrefabInstance:
         type: 3}
       propertyPath: TriggerOnce
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
+        type: 3}
+      propertyPath: TriggerObject
+      value: Player Container
       objectReference: {fileID: 0}
     - target: {fileID: 5147536690289369468, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
@@ -2460,6 +2475,11 @@ PrefabInstance:
       propertyPath: TriggerOnce
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
+        type: 3}
+      propertyPath: TriggerObject
+      value: Player Container
+      objectReference: {fileID: 0}
     - target: {fileID: 5147536690289369468, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
       propertyPath: m_Name
@@ -2552,6 +2572,11 @@ PrefabInstance:
         type: 3}
       propertyPath: TriggerOnce
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
+        type: 3}
+      propertyPath: TriggerObject
+      value: Player Container
       objectReference: {fileID: 0}
     - target: {fileID: 5147536690289369468, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
@@ -3908,7 +3933,7 @@ Transform:
   m_GameObject: {fileID: 1811044895}
   serializedVersion: 2
   m_LocalRotation: {x: 0.01745245, y: 0, z: 0, w: 0.99984777}
-  m_LocalPosition: {x: 1.1279984, y: 4.5, z: -5.84}
+  m_LocalPosition: {x: 0.73999786, y: 4.5, z: -5.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3945,7 +3970,7 @@ PrefabInstance:
     - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
       propertyPath: TriggerObject
-      value: Player Controller
+      value: Player Container
       objectReference: {fileID: 0}
     - target: {fileID: 5147536690289369468, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
@@ -4145,6 +4170,11 @@ PrefabInstance:
       propertyPath: TriggerOnce
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
+        type: 3}
+      propertyPath: TriggerObject
+      value: Player Container
+      objectReference: {fileID: 0}
     - target: {fileID: 5147536690289369468, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
       propertyPath: m_Name
@@ -4237,6 +4267,11 @@ PrefabInstance:
         type: 3}
       propertyPath: TriggerOnce
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
+        type: 3}
+      propertyPath: TriggerObject
+      value: Player Container
       objectReference: {fileID: 0}
     - target: {fileID: 5147536690289369468, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
@@ -4522,6 +4557,11 @@ PrefabInstance:
       propertyPath: TriggerOnce
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
+        type: 3}
+      propertyPath: TriggerObject
+      value: Player Container
+      objectReference: {fileID: 0}
     - target: {fileID: 5147536690289369468, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
       propertyPath: m_Name
@@ -4614,6 +4654,11 @@ PrefabInstance:
         type: 3}
       propertyPath: TriggerOnce
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
+        type: 3}
+      propertyPath: TriggerObject
+      value: Player Container
       objectReference: {fileID: 0}
     - target: {fileID: 5147536690289369468, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
@@ -4926,10 +4971,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Container
       objectReference: {fileID: 0}
+    - target: {fileID: 1410421847727729937, guid: 61662679dad16834ca643c164a3940ec,
+        type: 3}
+      propertyPath: minScale
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1410421847727729937, guid: 61662679dad16834ca643c164a3940ec,
+        type: 3}
+      propertyPath: playerScale
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8539117542663627291, guid: 61662679dad16834ca643c164a3940ec,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.872
+      value: -4.26
       objectReference: {fileID: 0}
     - target: {fileID: 8539117542663627291, guid: 61662679dad16834ca643c164a3940ec,
         type: 3}
@@ -5013,6 +5068,11 @@ PrefabInstance:
         type: 3}
       propertyPath: TriggerOnce
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
+        type: 3}
+      propertyPath: TriggerObject
+      value: Player Container
       objectReference: {fileID: 0}
     - target: {fileID: 5147536690289369468, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
