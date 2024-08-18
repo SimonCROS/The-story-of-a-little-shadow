@@ -49,13 +49,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be3d4e7bd01a69746abeda6ab2a0456e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 4
-  m_JumpAmount: 1.5
-  m_ScaleSpeed: 6
-  m_MinScale: 1
-  m_MaxScale: 4.2
-  m_Scaler: {fileID: 4564080080693781879}
-  m_ShadowCaster: {fileID: 8310843022271796629}
+  speed: 4
+  jumpAmount: 1.5
+  scaleSpeed: 6
+  minScale: 1
+  maxScale: 4.2
+  scaler: {fileID: 4564080080693781879}
+  shadowCaster: {fileID: 8310843022271796629}
 --- !u!54 &6912017529173303246
 Rigidbody:
   m_ObjectHideFlags: 0

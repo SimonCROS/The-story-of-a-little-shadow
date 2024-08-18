@@ -1,16 +1,17 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody m_Rigidbody;
-    private bool m_Grounded;
-    public float m_Speed = 4f;
-    public float m_JumpAmount = 1.5f;
-    public float m_ScaleSpeed = 6f;
-    public float m_MinScale = 1f;
-    public float m_MaxScale = 4.2f;
-    public Transform m_Scaler;
-    public SpriteRenderer m_ShadowCaster;
+    private Rigidbody rb;
+    private bool grounded;
+    public float speed = 4f;
+    public float jumpAmount = 1.5f;
+    public float scaleSpeed = 6f;
+    public float minScale = 1f;
+    public float maxScale = 4.2f;
+    public Transform scaler;
+    public SpriteRenderer shadowCaster;
 
     // MyPlayerControls is the C# class that Unity generated.
     // It encapsulates the data from the .inputactions asset we created
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     public void OnEnable()
@@ -41,22 +42,22 @@ public class PlayerController : MonoBehaviour
     {
         var move = controls.Player.Move.ReadValue<float>();
         if (move < 0)
-            m_ShadowCaster.flipX = true;
+            shadowCaster.flipX = true;
         else if (move > 0)
-            m_ShadowCaster.flipX = false;
+            shadowCaster.flipX = false;
 
-        m_Rigidbody.MovePosition(transform.position + m_Speed * Time.deltaTime * new Vector3(move, 0f, 0f));
+        rb.MovePosition(transform.position + speed * Time.deltaTime * new Vector3(move, 0f, 0f));
         
         var scale = controls.Player.Scale.ReadValue<float>();
-        var newScale = m_Scaler.localScale.x + scale * m_ScaleSpeed * Time.deltaTime;
-        m_Scaler.localScale = Mathf.Clamp(newScale, m_MinScale, m_MaxScale) * Vector3.one;
+        var newScale = scaler.localScale.x + scale * scaleSpeed * Time.deltaTime;
+        scaler.localScale = Mathf.Clamp(newScale, minScale, maxScale) * Vector3.one;
 
         if (controls.Player.Jump.IsPressed())
         {
-            if (m_Grounded)
+            if (grounded)
             {
                 var jumpCoeff = Mathf.Sqrt(newScale);
-                m_Rigidbody.AddForce(Vector3.up * (m_JumpAmount * jumpCoeff), ForceMode.Impulse);
+                rb.AddForce(Vector3.up * (jumpAmount * jumpCoeff), ForceMode.Impulse);
             }
         }
     }
@@ -65,7 +66,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            m_Grounded = true;
+            grounded = true;
         }
     }
 
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            m_Grounded = false;
+            grounded = false;
         }
     }
 }
