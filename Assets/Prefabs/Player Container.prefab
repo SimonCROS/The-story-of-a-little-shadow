@@ -53,6 +53,7 @@ MonoBehaviour:
   m_MinScale: 1
   m_MaxScale: 4.2
   m_Scaler: {fileID: 4564080080693781879}
+  m_ShadowCaster: {fileID: 8310843022271796629}
 --- !u!54 &6912017529173303246
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -124,7 +125,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_Color: {r: 0.6226415, g: 0.56402135, b: 0.3964934, a: 1}
   m_Intensity: 300
   m_Range: 24
   m_SpotAngle: 69.20451

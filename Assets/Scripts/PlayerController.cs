@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float m_MinScale = 1f;
     public float m_MaxScale = 4.2f;
     public Transform m_Scaler;
+    public SpriteRenderer m_ShadowCaster;
 
     // MyPlayerControls is the C# class that Unity generated.
     // It encapsulates the data from the .inputactions asset we created
@@ -39,6 +40,11 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         var move = controls.Player.Move.ReadValue<float>();
+        if (move < 0)
+            m_ShadowCaster.flipX = true;
+        else if (move > 0)
+            m_ShadowCaster.flipX = false;
+
         m_Rigidbody.MovePosition(transform.position + m_Speed * Time.deltaTime * new Vector3(move, 0f, 0f));
         
         var scale = controls.Player.Scale.ReadValue<float>();
