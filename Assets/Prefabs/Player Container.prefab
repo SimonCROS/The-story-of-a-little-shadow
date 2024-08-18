@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 4
   jumpHeight: 0.6
+  playerScale: 1
   scaleSpeed: 6
   minScale: 1
   maxScale: 4.2
@@ -76,13 +77,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 0.85
+  m_Height: 1
   m_Radius: 0.16
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 0.58, z: 0}
 --- !u!1 &1976987540832121436
 GameObject:
   m_ObjectHideFlags: 0
