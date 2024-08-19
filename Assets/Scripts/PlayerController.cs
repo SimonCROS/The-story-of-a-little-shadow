@@ -5,8 +5,7 @@ using UnityEngine.Serialization;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
-    private bool groundedPlayer;
-    private Vector3 playerVelocity;
+    private Vector3 velocity;
     private float lastHitTime = float.MinValue;
     public float playerSpeed = 4f;
     public float jumpHeight = 0.6f;
@@ -20,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public int immunityDuration = 1;
     public Transform scaler;
     public SpriteRenderer shadowCaster;
+    
+    private bool IsGrounded { get; set; }
 
     // MyPlayerControls is the C# class that Unity generated.
     // It encapsulates the data from the .inputactions asset we created
@@ -64,10 +65,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
+        IsGrounded = controller.isGrounded;
+        if (IsGrounded && velocity.y < 0)
         {
-            playerVelocity.y = 0f;
+            velocity.y = 0f;
         }
 
         // Move left right
@@ -78,12 +79,12 @@ public class PlayerController : MonoBehaviour
             shadowCaster.flipX = false;
         controller.Move(move * (Time.deltaTime * playerSpeed));
 
-        if (groundedPlayer)
+        if (IsGrounded)
         {
             // Check if something above
             var securityMargin = 0.01f;
             var top = controller.transform.position + controller.center + new Vector3(0, (controller.height / 2) + securityMargin, 0);
-            bool touchingCeiling = Physics.Raycast(top, Vector3.up, out RaycastHit hit, 0.1f + Mathf.Max(playerVelocity.y, 0));
+            bool touchingCeiling = Physics.Raycast(top, Vector3.up, out RaycastHit hit, 0.1f + Mathf.Max(velocity.y, 0));
         
             // Visual scale
             var scale = controls.Player.Scale.ReadValue<float>();
@@ -102,13 +103,13 @@ public class PlayerController : MonoBehaviour
         controller.radius = playerScale * 0.16f;
         
         // Jump
-        if (controls.Player.Jump.IsPressed() && groundedPlayer)
+        if (controls.Player.Jump.IsPressed() && IsGrounded)
         {
             float jumpVariation = Mathf.Sqrt(playerScale);
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * jumpVariation * gravityValue);
+            velocity.y += Mathf.Sqrt(jumpHeight * -3.0f * jumpVariation * gravityValue);
         }
 
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        velocity.y += gravityValue * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 }
