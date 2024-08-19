@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private Vector3 velocity;
     private float lastHitTime = float.MinValue;
+    private bool haveSwordDirty = false;
     public float playerSpeed = 4f;
     public float jumpHeight = 0.6f;
     public float playerScale = 1f;
@@ -36,6 +37,11 @@ public class PlayerController : MonoBehaviour
         health = maxHealth;
     }
 
+    private void OnValidate()
+    {
+        haveSwordDirty = true;
+    }
+
     private void OnEnable()
     {
         controls ??= new DefaultPlayerControls();
@@ -49,6 +55,17 @@ public class PlayerController : MonoBehaviour
     {
         controls.Player.Disable();
     }
+
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (haveSwordDirty)
+        {
+            ReloadSprite();
+            haveSwordDirty = false;
+        }
+    }
+#endif
     
     private void FixedUpdate()
     {

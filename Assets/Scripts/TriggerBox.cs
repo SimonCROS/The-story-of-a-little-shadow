@@ -37,6 +37,9 @@ public class TriggerBox : MonoBehaviour
     [SerializeField]
     private GameObject Sword;
 
+    [SerializeField]
+    private List<MonoBehaviour> enableMonoBehaviours = new List<MonoBehaviour>();
+
     public void LoadScene(string nextScene)
     {
         SceneManager.LoadScene(nextScene);
@@ -89,6 +92,11 @@ public class TriggerBox : MonoBehaviour
         {
             other.gameObject.SendMessage("UnlockSword");
             Sword.SetActive(false);
+        }
+
+        foreach (var mb in enableMonoBehaviours)
+        {
+            mb.enabled = true;
         }
 
         if (TriggerOnce)
