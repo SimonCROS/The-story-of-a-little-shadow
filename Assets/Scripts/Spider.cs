@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spider : MonoBehaviour
@@ -7,9 +5,9 @@ public class Spider : MonoBehaviour
     public int damage;
     public PlayerController playerController;
 
-	private void OnCollisionEnter2D(Collision2D collision)
+	private void OnTriggerStay(Collider other)
 	{
-		if (collision.gameObject.tag == "Player")
+		if (other.gameObject.CompareTag("Player"))
 		{
 			playerController.TakeDamage(damage);
 		}

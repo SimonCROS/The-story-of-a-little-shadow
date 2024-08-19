@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private bool groundedPlayer;
     private Vector3 playerVelocity;
+    private float lastHitTime = float.MinValue;
     public float playerSpeed = 4f;
     public float jumpHeight = 0.6f;
     public float playerScale = 1f;
@@ -14,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public float minScale = 1f;
     public float maxScale = 4.2f;
     public float gravityValue = -9.81f;
+    public int maxHealth = 3;
+    public int health;
+    public int immunityDuration = 1;
     public Transform scaler;
     public SpriteRenderer shadowCaster;
 
@@ -43,12 +47,15 @@ public class PlayerController : MonoBehaviour
         controls.Player.Disable();
     }
 
-    public int maxHealth = 3;
-    public int health;
-
     public void TakeDamage(int damage)
     {
+        if (Time.time - lastHitTime < immunityDuration)
+        {
+            return;
+        }
+        
         health -= damage;
+        lastHitTime = Time.time;
         if (health <= 0)
         {
             Destroy(gameObject);

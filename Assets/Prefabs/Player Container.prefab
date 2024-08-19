@@ -51,15 +51,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 4
   jumpHeight: 0.6
-  playerScale: 1
+  playerScale: 1.6
   scaleSpeed: 6
-  minScale: 1
+  minScale: 0.7
   maxScale: 4.2
   gravityValue: -9.81
   scaler: {fileID: 4564080080693781879}
   shadowCaster: {fileID: 8310843022271796629}
   maxHealth: 3
-  health: 0
+  health: 1
 --- !u!143 &4630105022344283626
 CharacterController:
   m_ObjectHideFlags: 0
