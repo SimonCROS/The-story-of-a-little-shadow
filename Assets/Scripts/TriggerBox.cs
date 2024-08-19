@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
 
 public class TriggerBox : MonoBehaviour
@@ -27,6 +28,17 @@ public class TriggerBox : MonoBehaviour
     [SerializeField]
     string nextScene = null;
 
+    [SerializeField]
+    Color SpotLightColor = Color.white;
+
+    [SerializeField]
+    Light spotLight;
+
+    public void LoadScene(string nextScene)
+    {
+        SceneManager.LoadScene(nextScene);
+    }
+
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other != null)
@@ -36,8 +48,13 @@ public class TriggerBox : MonoBehaviour
             {
                 if (!string.IsNullOrEmpty(nextScene))
                 {
-                    SceneManager.LoadScene(nextScene);
+                    LoadScene(nextScene);
                     return;
+                }
+
+                if (SpotLightColor != Color.white)
+                {
+                    spotLight.color = SpotLightColor;
                 }
 
                 if (Clip != null)
