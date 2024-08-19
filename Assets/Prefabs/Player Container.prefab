@@ -62,6 +62,9 @@ MonoBehaviour:
   maxHealth: 3
   health: 1
   immunityDuration: 1
+  monsterOverlapMask:
+    serializedVersion: 2
+    m_Bits: 128
   scaler: {fileID: 4564080080693781879}
   shadowCaster: {fileID: 8310843022271796629}
   attackRenderer: {fileID: 1647471323512955567}

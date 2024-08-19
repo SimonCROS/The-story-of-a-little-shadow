@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 3;
     public int health;
     public int immunityDuration = 1;
+    public LayerMask monsterOverlapMask;
     public Transform scaler;
     public SpriteRenderer shadowCaster;
     public SpriteRenderer attackRenderer;
@@ -75,6 +76,15 @@ public class PlayerController : MonoBehaviour
         if (CanAttack && controls.Player.Attack.IsPressed())
         {
             lastAttackTime = Time.time;
+        }
+
+        if (IsAttacking)
+        {
+            var colliders = Physics.OverlapSphere(attackRenderer.transform.position, 0.3f, monsterOverlapMask);
+            foreach (var col in colliders)
+            {
+                Destroy(col.gameObject);
+            }
         }
 
         if (IsAttacking != isVisuallyAttacking)
