@@ -47,7 +47,7 @@ public class Spider : MonoBehaviour
 		    velocity.y = 0f;
 	    }
 
-	    if (IsGrounded)
+	    if (IsGrounded && playerController)
 	    {
 		    Vector3 directionToPlayer = (playerController.transform.position - transform.position).normalized;
 		    velocity.x += directionToPlayer.x * speadIncrementer * Time.deltaTime;
@@ -70,5 +70,10 @@ public class Spider : MonoBehaviour
 		{
 			playerController.TakeDamage(damage);
 		}
+	}
+
+	public void AddDamage()
+	{
+		Destroy(gameObject);
 	}
 }

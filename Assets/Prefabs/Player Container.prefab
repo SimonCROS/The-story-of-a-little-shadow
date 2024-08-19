@@ -58,6 +58,7 @@ MonoBehaviour:
   gravityValue: -9.81
   attackDuration: 0.2
   attackDelay: 0.3
+  attackRadius: 0.4
   haveSword: 0
   maxHealth: 3
   health: 1
@@ -484,7 +485,7 @@ Transform:
   m_GameObject: {fileID: 6751501248791995094}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.18, y: 0.7314287, z: -0.035}
+  m_LocalPosition: {x: 0.516, y: 0.772, z: -0.035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

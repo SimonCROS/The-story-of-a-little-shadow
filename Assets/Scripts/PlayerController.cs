@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float gravityValue = -9.81f;
     public float attackDuration = 0.2f;
     public float attackDelay = 0.3f;
+    public float attackRadius = 0.3f;
     public bool haveSword = false;
     public int maxHealth = 3;
     public int health;
@@ -64,6 +65,14 @@ public class PlayerController : MonoBehaviour
         controls.Player.Disable();
     }
 
+    private void OnDrawGizmos()
+    {
+        if (IsAttacking)
+        {
+            Gizmos.DrawSphere(attackRenderer.transform.position, attackRadius * playerScale);
+        }
+    }
+
     private void Update()
     {
         if (haveSwordDirty)
@@ -80,10 +89,12 @@ public class PlayerController : MonoBehaviour
 
         if (IsAttacking)
         {
-            var colliders = Physics.OverlapSphere(attackRenderer.transform.position, 0.3f, monsterOverlapMask);
-            foreach (var col in colliders)
+            int maxColliders = 10;
+            Collider[] hitColliders = new Collider[maxColliders];
+            var numColliders = Physics.OverlapSphereNonAlloc(attackRenderer.transform.position, attackRadius * playerScale, hitColliders, monsterOverlapMask);
+            for (int i = 0; i < numColliders; i++)
             {
-                Destroy(col.gameObject);
+                hitColliders[i].SendMessage("AddDamage");
             }
         }
 
