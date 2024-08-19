@@ -6295,6 +6295,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityValue: -9.81
+  jumpHeight: 2
+  jumpCooldown: 5
+  speadIncrementer: 8
+  moveSpeed: 5
   damage: 1
   playerController: {fileID: 1991460833}
   groundedSprite: {fileID: 21300000, guid: 8375d9c59f4dbdb49bf11ceba683204a, type: 3}
