@@ -2328,6 +2328,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
+      propertyPath: Sword
+      value: 
+      objectReference: {fileID: 1730071539}
+    - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
+        type: 3}
       propertyPath: Source
       value: 
       objectReference: {fileID: 142011}
@@ -2336,6 +2341,11 @@ PrefabInstance:
       propertyPath: Voiceline
       value: 
       objectReference: {fileID: 8300000, guid: 67928441f3ca725429a7787b2c13ef1b, type: 3}
+    - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
+        type: 3}
+      propertyPath: giveSword
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
       propertyPath: TriggerOnce
@@ -5085,8 +5095,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81072e1806770324b827c2e6571b40b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravityValue: -9.81
+  jumpHeight: 2
+  jumpCooldown: 5
+  speadIncrementer: 8
+  moveSpeed: 5
   damage: 1
   playerController: {fileID: 1991460833}
+  groundedSprite: {fileID: 0}
+  jumpSprite: {fileID: 0}
 --- !u!212 &1595548385
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5429,7 +5446,7 @@ Transform:
   m_GameObject: {fileID: 1730071539}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.67, y: 5.29, z: -0.55}
+  m_LocalPosition: {x: 22.83, y: 5.29, z: -0.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6619,9 +6636,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press X or E to slash
-
-    if the game was finished'
+  m_text: Press E to slash
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6684,7 +6699,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 11.003648, w: 3.4037416}
+  m_margin: {x: 6.6701508, y: 0, z: 7.299268, w: 3.4037416}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -7818,16 +7833,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player Container
-      objectReference: {fileID: 0}
-    - target: {fileID: 1410421847727729937, guid: 61662679dad16834ca643c164a3940ec,
-        type: 3}
-      propertyPath: minScale
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1410421847727729937, guid: 61662679dad16834ca643c164a3940ec,
-        type: 3}
-      propertyPath: playerScale
-      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 8539117542663627291, guid: 61662679dad16834ca643c164a3940ec,
         type: 3}

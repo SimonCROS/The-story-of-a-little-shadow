@@ -34,6 +34,9 @@ public class TriggerBox : MonoBehaviour
     [SerializeField]
     Light spotLight;
 
+    [SerializeField]
+    private GameObject Sword;
+
     public void LoadScene(string nextScene)
     {
         SceneManager.LoadScene(nextScene);
@@ -41,45 +44,57 @@ public class TriggerBox : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other != null)
+        if (other == null)
         {
-            Debug.Log("Collided with " + other.gameObject.name);
-            if (other.gameObject.name == TriggerObject)
+            return;
+        }
+
+        if (other.gameObject.name != TriggerObject)
+        {
+            return;
+        }
+
+        if (!string.IsNullOrEmpty(nextScene))
+        {
+            LoadScene(nextScene);
+            return;
+        }
+
+        if (SpotLightColor != Color.white)
+        {
+            spotLight.color = SpotLightColor;
+        }
+
+        if (Clip != null)
+        {
+            if (Source == null)
             {
-                if (!string.IsNullOrEmpty(nextScene))
-                {
-                    LoadScene(nextScene);
-                    return;
-                }
-
-                if (SpotLightColor != Color.white)
-                {
-                    spotLight.color = SpotLightColor;
-                }
-
-                if (Clip != null)
-                {
-                    if (Source == null)
-                    {
-                        Debug.LogError("No audioSource linked to the triggerbox");
-                        return;
-                    }
-                    else
-                    {
-                        Source.clip = Clip;
-                        Source.loop = Loop;
-                        Source.Play();
-                    }
-                }
-
-				if (Text != null)
-                {
-                    Text.FadeIn();
-                }
-                if (TriggerOnce)
-                    Destroy(this);
+                Debug.LogError("No audioSource linked to the triggerbox");
+                return;
             }
-		}
+            else
+            {
+                Source.clip = Clip;
+                Source.loop = Loop;
+                Source.Play();
+            }
+        }
+
+		if (Text != null)
+        {
+            Text.FadeIn();
+        }
+
+        if (Sword != null)
+        {
+            other.gameObject.SendMessage("UnlockSword");
+            Sword.SetActive(false);
+        }
+
+        if (TriggerOnce)
+        {
+            Destroy(this);
+        }
 	}
 }
 

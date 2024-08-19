@@ -14,11 +14,14 @@ public class PlayerController : MonoBehaviour
     public float minScale = 1f;
     public float maxScale = 4.2f;
     public float gravityValue = -9.81f;
+    public bool haveSword = false;
     public int maxHealth = 3;
     public int health;
     public int immunityDuration = 1;
     public Transform scaler;
     public SpriteRenderer shadowCaster;
+    public Sprite spriteWithoutSword;
+    public Sprite spriteWithSword;
     
     private bool IsGrounded { get; set; }
 
@@ -33,36 +36,20 @@ public class PlayerController : MonoBehaviour
         health = maxHealth;
     }
 
-    public void OnEnable()
+    private void OnEnable()
     {
-        if (controls == null)
-        {
-            controls = new DefaultPlayerControls();
-        }
+        controls ??= new DefaultPlayerControls();
 
+        ReloadScale();
+        ReloadSprite();
         controls.Player.Enable();
     }
 
-    public void OnDisable()
+    private void OnDisable()
     {
         controls.Player.Disable();
     }
-
-    public void TakeDamage(int damage)
-    {
-        if (Time.time - lastHitTime < immunityDuration)
-        {
-            return;
-        }
-        
-        health -= damage;
-        lastHitTime = Time.time;
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-
+    
     private void FixedUpdate()
     {
         IsGrounded = controller.isGrounded;
@@ -92,15 +79,10 @@ public class PlayerController : MonoBehaviour
             {
                 playerScale += scale * scaleSpeed * Time.deltaTime;
                 playerScale = Mathf.Clamp(playerScale, minScale, maxScale);
-                scaler.localScale = new Vector3(playerScale, playerScale, 1f);
             }
         }
 
-        // Collider scale
-        float center = 0.58f * playerScale;
-        controller.center = new Vector3(controller.center.x, center, controller.center.z);
-        controller.height = center * 2f - 0.16f;
-        controller.radius = playerScale * 0.16f;
+        ReloadScale();
         
         // Jump
         if (controls.Player.Jump.IsPressed() && IsGrounded)
@@ -111,5 +93,41 @@ public class PlayerController : MonoBehaviour
 
         velocity.y += gravityValue * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (Time.time - lastHitTime < immunityDuration)
+        {
+            return;
+        }
+        
+        health -= damage;
+        lastHitTime = Time.time;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void UnlockSword()
+    {
+        haveSword = true;
+        ReloadSprite();
+    }
+
+    private void ReloadScale()
+    {
+        // Collider scale
+        float center = 0.58f * playerScale;
+        controller.center = new Vector3(controller.center.x, center, controller.center.z);
+        controller.height = center * 2f - 0.16f;
+        controller.radius = playerScale * 0.16f;
+        scaler.localScale = new Vector3(playerScale, playerScale, 1f);
+    }
+
+    private void ReloadSprite()
+    {
+        shadowCaster.sprite = haveSword ? spriteWithSword : spriteWithoutSword;
     }
 }
