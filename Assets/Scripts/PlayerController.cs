@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private Vector3 velocity;
     private float lastHitTime = float.MinValue;
+    private float lastAttackTime = float.MinValue;
+    private bool isVisuallyAttacking = false;
     private bool haveSwordDirty = false;
     public float playerSpeed = 4f;
     public float jumpHeight = 0.6f;
@@ -15,16 +17,21 @@ public class PlayerController : MonoBehaviour
     public float minScale = 1f;
     public float maxScale = 4.2f;
     public float gravityValue = -9.81f;
+    public float attackDuration = 0.2f;
+    public float attackDelay = 0.3f;
     public bool haveSword = false;
     public int maxHealth = 3;
     public int health;
     public int immunityDuration = 1;
     public Transform scaler;
     public SpriteRenderer shadowCaster;
+    public SpriteRenderer attackRenderer;
     public Sprite spriteWithoutSword;
     public Sprite spriteWithSword;
     
     private bool IsGrounded { get; set; }
+    private bool IsAttacking => Time.time - lastAttackTime < attackDuration;
+    private bool CanAttack => haveSword && Time.time - lastAttackTime > attackDelay;
 
     // MyPlayerControls is the C# class that Unity generated.
     // It encapsulates the data from the .inputactions asset we created
@@ -56,7 +63,6 @@ public class PlayerController : MonoBehaviour
         controls.Player.Disable();
     }
 
-#if UNITY_EDITOR
     private void Update()
     {
         if (haveSwordDirty)
@@ -64,8 +70,19 @@ public class PlayerController : MonoBehaviour
             ReloadSprite();
             haveSwordDirty = false;
         }
+        
+        // Attack
+        if (CanAttack && controls.Player.Attack.IsPressed())
+        {
+            lastAttackTime = Time.time;
+        }
+
+        if (IsAttacking != isVisuallyAttacking)
+        {
+            ReloadSprite();
+            isVisuallyAttacking = IsAttacking;
+        }
     }
-#endif
     
     private void FixedUpdate()
     {
@@ -77,10 +94,7 @@ public class PlayerController : MonoBehaviour
 
         // Move left right
         var move = new Vector3(controls.Player.Move.ReadValue<float>(), 0, 0);
-        if (move.x < 0)
-            shadowCaster.flipX = true;
-        else if (move.x > 0)
-            shadowCaster.flipX = false;
+        UpdateVisualDirection(move);
         controller.Move(move * (Time.deltaTime * playerSpeed));
 
         if (IsGrounded)
@@ -133,6 +147,26 @@ public class PlayerController : MonoBehaviour
         ReloadSprite();
     }
 
+    private void UpdateVisualDirection(Vector3 direction)
+    {
+        Vector3 rendererPosition = attackRenderer.transform.localPosition;
+        
+        if (direction.x < 0)
+        {
+            rendererPosition.x = -Mathf.Abs(rendererPosition.x);
+            attackRenderer.flipX = true;
+            shadowCaster.flipX = true;
+        }
+        else if (direction.x > 0)
+        {
+            rendererPosition.x = Mathf.Abs(rendererPosition.x);
+            attackRenderer.flipX = false;
+            shadowCaster.flipX = false;
+        }
+
+        attackRenderer.transform.localPosition = rendererPosition;
+    }
+
     private void ReloadScale()
     {
         // Collider scale
@@ -146,5 +180,6 @@ public class PlayerController : MonoBehaviour
     private void ReloadSprite()
     {
         shadowCaster.sprite = haveSword ? spriteWithSword : spriteWithoutSword;
+        attackRenderer.gameObject.SetActive(IsAttacking);
     }
 }
