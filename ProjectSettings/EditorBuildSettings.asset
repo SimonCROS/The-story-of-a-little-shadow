@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: 6eade91c0f89c38439a1707f6530fd45
+  - enabled: 1
+    path: Assets/Scenes/Epilogue.unity
+    guid: 2270f6c10021ecc438587a443225a156
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 54ae9295283753e43a4830181fdac157,
       type: 2}

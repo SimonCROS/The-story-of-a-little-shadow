@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        health = maxHealth;
     }
 
     public void OnEnable()
@@ -40,6 +41,18 @@ public class PlayerController : MonoBehaviour
     public void OnDisable()
     {
         controls.Player.Disable();
+    }
+
+    public int maxHealth = 3;
+    public int health;
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()
