@@ -3338,6 +3338,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1410421847727729937, guid: 61662679dad16834ca643c164a3940ec,
         type: 3}
+      propertyPath: haveSword
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1410421847727729937, guid: 61662679dad16834ca643c164a3940ec,
+        type: 3}
       propertyPath: playerScale
       value: 1.6
       objectReference: {fileID: 0}
