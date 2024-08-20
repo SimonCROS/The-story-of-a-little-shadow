@@ -732,8 +732,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 150, y: 0, z: 0}
-  m_Center: {x: 40, y: 0, z: 0}
+  m_Size: {x: 55, y: 0, z: 0}
+  m_Center: {x: -12, y: 0, z: 0}
 --- !u!4 &462302098
 Transform:
   m_ObjectHideFlags: 0
@@ -1740,7 +1740,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Clip
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 7e75cc3cc13b8f04493e22924436a209, type: 3}
     - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
       propertyPath: Text
@@ -1770,6 +1770,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Line0-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147536690289369468, guid: 3fcfdc2dccefda04084a619347a3e70f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8482159269335656645, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
@@ -2904,7 +2909,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Clip
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: f0d54d51020439540988e96b5a07f4c2, type: 3}
     - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
       propertyPath: Text
@@ -3403,7 +3408,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Clip
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 9270b198f149ac04788c381f4d8c570c, type: 3}
     - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
       propertyPath: Text
