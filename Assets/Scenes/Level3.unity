@@ -159,17 +159,17 @@ PrefabInstance:
     - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
       propertyPath: SpotLightColor.b
-      value: 0.0036044943
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
       propertyPath: SpotLightColor.g
-      value: 0.48749822
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
       propertyPath: SpotLightColor.r
-      value: 0.764151
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 418964252447583248, guid: 3fcfdc2dccefda04084a619347a3e70f,
         type: 3}
@@ -9263,7 +9263,7 @@ PrefabInstance:
     - target: {fileID: 1411082491810932498, guid: 29319f5ed0f243e489ca0b520a212f85,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 67.73
+      value: 69.67
       objectReference: {fileID: 0}
     - target: {fileID: 1411082491810932498, guid: 29319f5ed0f243e489ca0b520a212f85,
         type: 3}
@@ -9421,6 +9421,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player Container
+      objectReference: {fileID: 0}
+    - target: {fileID: 1410421847727729937, guid: 61662679dad16834ca643c164a3940ec,
+        type: 3}
+      propertyPath: health
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8539117542663627291, guid: 61662679dad16834ca643c164a3940ec,
         type: 3}

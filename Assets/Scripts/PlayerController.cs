@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
@@ -30,8 +31,17 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer attackRenderer;
     public Sprite spriteWithoutSword;
     public Sprite spriteWithSword;
-    
-    private bool IsGrounded { get; set; }
+
+    [SerializeField]
+    public AudioSource playerHurt;
+
+	[SerializeField]
+	public AudioSource spiderHurt;
+
+	[SerializeField]
+	public AudioSource swordAttack;
+
+	private bool IsGrounded { get; set; }
     private bool IsAttacking => Time.time - lastAttackTime < attackDuration;
     private bool CanAttack => haveSword && Time.time - lastAttackTime > attackDelay;
 
@@ -85,7 +95,8 @@ public class PlayerController : MonoBehaviour
         if (CanAttack && controls.Player.Attack.IsPressed())
         {
             lastAttackTime = Time.time;
-        }
+			swordAttack.Play();
+		}
 
         if (IsAttacking)
         {
@@ -95,6 +106,7 @@ public class PlayerController : MonoBehaviour
             for (int i = 0; i < numColliders; i++)
             {
                 hitColliders[i].SendMessage("AddDamage");
+                spiderHurt.Play();
             }
         }
 
@@ -153,12 +165,14 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        
-        health -= damage;
+        playerHurt.Play();
+
+		health -= damage;
         lastHitTime = Time.time;
         if (health <= 0)
         {
             Destroy(gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
